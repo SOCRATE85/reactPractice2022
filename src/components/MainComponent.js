@@ -57,14 +57,14 @@ class Main extends Component {
           <Route
             exact
             path="/directory"
-            render={() => <Directory campsites={this.state.campsites} />}
+            render={() => <Directory campsites={this.props.campsites} />}
           />
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           <Route exact path="/contactus" component={Contact} />
           <Route
             exact
             path="/aboutus"
-            render={() => <About partners={this.state.partners} />}
+            render={() => <About partners={this.props.partners} />}
           />
           <Redirect to="/home" />
         </switch>
