@@ -8,12 +8,47 @@ import {
   Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
+
+function PartnerList(props) {
+  const partners = props.partners.partners.map((partner) => {
+    return (
+      <Fade in key={partner.id}>
+        <Media tag="li">
+          <RenderPartner partner={partner} />
+        </Media>
+      </Fade>
+    );
+  });
+
+  if (props.partners.isLoading) {
+    return <Loading />;
+  }
+  if (props.partners.errMess) {
+    return <h4>{props.partners.errMess}</h4>;
+  }
+
+  return (
+    <div className="col mt-4">
+      <Media list>
+        <Stagger in>{partners}</Stagger>
+      </Media>
+    </div>
+  );
+}
 
 function RenderPartner({ partner }) {
   if (partner) {
     return (
       <React.Fragment>
-        <Media object src={partner.image} alt={partner.name} width="150" />
+        <Media
+          object
+          src={baseUrl + partner.image}
+          alt={partner.name}
+          width="150"
+        />
         <Media body className="ml-5 mb-4">
           <Media heading>{partner.name}</Media>
           <p>{partner.description}</p>

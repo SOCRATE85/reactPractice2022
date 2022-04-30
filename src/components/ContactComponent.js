@@ -44,8 +44,9 @@ class Contact extends Component {
 
   //method to log the current state in the console
   handleSubmit(values) {
-    console.log("Current state is: " + JSON.stringify(values));
-    alert("Current state is: " + JSON.stringify(values));
+    this.props.postFeedback(values);
+    // console.log("Current state is: " + JSON.stringify(values));
+    // alert("Current state is: " + JSON.stringify(values));
     this.props.resetFeedbackForm();
   }
 
